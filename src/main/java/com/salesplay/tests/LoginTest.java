@@ -42,8 +42,32 @@ public class LoginTest {
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
         for (CSVRecord record : records) {
             loginData.add(new Object[]{record.get("email"), record.get("password")});
-            System.out.println("Test Case"Object[]);
+
         }
         return loginData.iterator();
     }
-}
+
+        @Test(dataProvider = "loginData")
+        public void testLogin(String email, String password) {
+            WebElement emailField = driver.findElement(By.id("replace_password"));
+            emailField.sendKeys(email);
+
+            WebElement passwordField = driver.findElement(By.id("replace_password"));
+            passwordField.sendKeys(password);
+
+            WebElement loginButton = driver.findElement(By.id("sign_in_link"));
+            loginButton.click();
+
+            WebElement validationMessageElement = driver.findElement(By.xpath("//label[@class='err_msg']"));
+            String actualValidationMessage = validationMessageElement.getText();
+            String expectedValidationMessage = "Incorrect Username or Password "; // Adjust as needed
+
+            Assert.assertEquals(actualValidationMessage, expectedValidationMessage);
+        }
+        @AfterClass
+        public void tearDown() {
+            if (driver != null) {
+                driver.quit();
+            }
+        }
+    }
