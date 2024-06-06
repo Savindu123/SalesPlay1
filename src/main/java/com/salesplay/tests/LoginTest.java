@@ -21,15 +21,15 @@ import java.util.Iterator;
 import java.util.List;
 
 public class LoginTest {
-    private static WebDriver driver;
+    WebDriver driver;
 
     @BeforeClass
-    public static void setUp() {
+    public void setUp() {
         // Set up ChromeDriver
         String baseUrl = "https://webpos.salesplaypos.com/sign_in";
-        WebDriverManager.chromedriver().driverVersion("114.0.5735.90").setup();
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+//        WebDriverManager.chromedriver().driverVersion("114.0.5735.90").setup();
+        //WebDriverManager.chromedriver().setup();
+        driver = WebDriverManager.chromedriver().create();
         System.out.println("Chrome is Starting");
         driver.get(baseUrl);
         driver.manage().window().maximize();
@@ -48,8 +48,8 @@ public class LoginTest {
     }
 
         @Test(dataProvider = "loginData")
-        public void testLogin(String email, String password) {
-            WebElement emailField = driver.findElement(By.id("replace_password"));
+        public void testLogin(String email, String password) throws InterruptedException {
+            WebElement emailField = driver.findElement(By.id("replace_username"));
             emailField.sendKeys(email);
 
             WebElement passwordField = driver.findElement(By.id("replace_password"));
@@ -60,14 +60,20 @@ public class LoginTest {
 
             WebElement validationMessageElement = driver.findElement(By.xpath("//label[@class='err_msg']"));
             String actualValidationMessage = validationMessageElement.getText();
-            String expectedValidationMessage = "Incorrect Username or Password "; // Adjust as needed
+            String expectedValidationMessage = "Incorrect Username or Password"; // Adjust as needed
+
+            Thread.sleep(1000);
+
+//            String actualValue = driver.findElement(By.xpath("//label[@class='err_msg']")).getText();
+
+//            System.out.println("Test Case "+actualValidationMessage);
 
             Assert.assertEquals(actualValidationMessage, expectedValidationMessage);
         }
-        @AfterClass
+       /* @AfterClass
         public void tearDown() {
             if (driver != null) {
                 driver.quit();
             }
-        }
+        }*/
     }
