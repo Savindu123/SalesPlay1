@@ -3,7 +3,7 @@
 <suite name="Failed suite [Command line suite]">
   <test thread-count="5" name="Command line test(failed)">
     <classes>
-      <class name="com.salesplay.tests.LoginTest">
+      <class name="salesplay.tests.LoginTest">
         <methods>
           <include name="testLogin"/>
           <include name="setUp"/>

@@ -1,4 +1,4 @@
-package com.salesplay.tests;
+package salesplay.tests;
 
 import org.testng.TestNG;
 
