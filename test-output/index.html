@@ -104,7 +104,7 @@
                     <div class="method-list-content skipped suite-Command_line_suite">
                       <span>
                         <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-Command_line_suite" title="com.salesplay.tests.LoginTest" class="method navigator-link" hash-for-method="testLogin(savindunvision@gmail.com, Asd12345)">testLogin(savindunvision@gmail.com, Asd12345)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Command_line_suite" title="salesplay.tests.LoginTest" class="method navigator-link" hash-for-method="testLogin(savindunvision@gmail.com, Asd12345)">testLogin(savindunvision@gmail.com, Asd12345)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content skipped suite-Command_line_suite -->
@@ -122,7 +122,7 @@
           <div class="suite-Command_line_suite-class-skipped">
             <div class="main-panel-header rounded-window-top">
               <img src="skipped.png"/>
-              <span class="class-name">com.salesplay.tests.LoginTest</span>
+              <span class="class-name">salesplay.tests.LoginTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -131,31 +131,38 @@
                   </a> <!-- testLogin(savindunvision@gmail.com, Asd12345) -->
                   <span class="method-name">testLogin</span>
                   <span class="parameters">(savindunvision@gmail.com, Asd12345)</span>
-                  <div class="stack-trace">org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: session not created: This version of ChromeDriver only supports Chrome version 114
-Current browser version is 125.0.6422.113 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe 
-Host info: host: &apos;DESKTOP-EBE9MOT&apos;, ip: &apos;10.30.100.90&apos;
-Build info: version: &apos;4.10.0&apos;, revision: &apos;c14d967899&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.1&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [null, newSession {capabilities=[Capabilities {browserName: chrome, goog:chromeOptions: {args: [--remote-allow-origins=*], extensions: []}}]}]
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:140)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:96)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:68)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:163)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:531)
-	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:227)
-	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:154)
-	at org.openqa.selenium.chromium.ChromiumDriver.&lt;init&gt;(ChromiumDriver.java:107)
-	at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:87)
-	at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:82)
-	at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:50)
-	at com.salesplay.tests.LoginTest.setUp(LoginTest.java:32)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at com.salesplay.tests.TestRunner.main(TestRunner.java:9)
-... Removed 20 stack frames
-</div> <!-- stack-trace -->
+                  <div class="stack-trace">org.openqa.selenium.SessionNotCreatedException: Could not start a new
+                      session. Response code 500. Message: session not created: This version of ChromeDriver only
+                      supports Chrome version 114
+                      Current browser version is 125.0.6422.113 with binary path C:\Program
+                      Files\Google\Chrome\Application\chrome.exe
+                      Host info: host: &apos;DESKTOP-EBE9MOT&apos;, ip: &apos;10.30.100.90&apos;
+                      Build info: version: &apos;4.10.0&apos;, revision: &apos;c14d967899&apos;
+                      System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;,
+                      java.version: &apos;21.0.1&apos;
+                      Driver info: org.openqa.selenium.chrome.ChromeDriver
+                      Command: [null, newSession {capabilities=[Capabilities {browserName: chrome, goog:chromeOptions:
+                      {args: [--remote-allow-origins=*], extensions: []}}]}]
+                      at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:140)
+                      at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:96)
+                      at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:68)
+                      at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:163)
+                      at
+                      org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+                      at
+                      org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+                      at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:531)
+                      at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:227)
+                      at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:154)
+                      at org.openqa.selenium.chromium.ChromiumDriver.&lt;init&gt;(ChromiumDriver.java:107)
+                      at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:87)
+                      at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:82)
+                      at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:50)
+                      at salesplay.tests.LoginTest.setUp(LoginTest.java:32)
+                      at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+                      at salesplay.tests.TestRunner.main(TestRunner.java:9)
+                      ... Removed 20 stack frames
+                  </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -246,7 +253,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.salesplay.tests.LoginTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">salesplay.tests.LoginTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <img src="failed.png">
                 </img>

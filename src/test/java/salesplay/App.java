@@ -1,4 +1,4 @@
-package com.salesplay;
+package salesplay;
 
 public class App {
     public static void main(String[] args) {
