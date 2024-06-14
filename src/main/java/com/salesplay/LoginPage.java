@@ -38,4 +38,3 @@ public class LoginPage {
         return driver.findElement(validationMessage).getText();
     }
 }
-
