@@ -1,20 +1,26 @@
 package salesplay.tests;
 
 import com.salesplay.LoginPage;
-import org.openqa.selenium.By;
+import io.qameta.allure.*;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.testng.Assert.assertEquals;
 
 public class LoginTest {
@@ -29,7 +35,6 @@ public class LoginTest {
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
         loginPage = new LoginPage(driver);
         driver.manage().window().maximize();
     }
@@ -46,18 +51,17 @@ public class LoginTest {
     }
 
         @Test(dataProvider = "loginData")
+        @Description("This test attempts to log into the website using a login and a password. Fails if any error happens.\n\nNote that this test does not test 2-Factor Authentication.")
+        @Severity(CRITICAL)
+        @Link(name = "Website", url = "https://webpos.salesplaypos.com/sign_in")
         public void testLogin(String email, String password, String expectedmessage) throws InterruptedException {
 
             loginPage.enterEmail(email);
             loginPage.enterPassword(password);
             loginPage.clickLoginButton();
-
             Thread.sleep(2000);
-
             String actualValidationMessage = loginPage.getValidationMessage();
-
             assertEquals(actualValidationMessage, expectedmessage);
-
         }
 
     @AfterMethod
@@ -67,4 +71,21 @@ public class LoginTest {
         }
     }
 
+    @AfterMethod (alwaysRun = true)
+    public void takeScreenshot(ITestResult result){
+        if(!result.isSuccess()){
+            //Take screenshot via webDriver
+            File screenShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+            //Save screenshot and convert to inputStream
+            try {
+                FileUtils.copyFile(screenShot, new File("build/screenshots/failedTestScreenshot.png"));
+                InputStream is = Files.newInputStream(Paths.get("build/screenshots/failedTestScreenshot.png"));
+                //Attach screenshot to allure reports
+                Allure.addAttachment("Last system snapshot",is);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
+}

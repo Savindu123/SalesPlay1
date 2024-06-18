@@ -16,6 +16,18 @@
         <aspectj.version>1.9.20.1</aspectj.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-bom</artifactId>
+                <version>${allure.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Selenium Dependency -->
         <dependency>
@@ -47,13 +59,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.7.0</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
             <version>1.8</version> <!-- Replace with the latest version -->
@@ -61,10 +66,8 @@
 
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-bom</artifactId>
-            <version>${allure.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
+            <artifactId>allure-testng</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
