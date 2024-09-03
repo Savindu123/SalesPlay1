@@ -23,6 +23,8 @@ public class RegistrationPage {
     private By ValidationMessagePassword =  By.xpath("//label[@for='customerPassword' and @class='error']");
     private By ValidationMessageBusinessname =  By.xpath("//label[@for='customerName' and @class='error']");
 
+    private By RegistrationSuccessfullMessage = By.xpath("//*[ @class='text-msg']");
+
     // Actions
     public static void enterEmail(String email) {
         driver.findElement(emailField).clear();
@@ -60,5 +62,10 @@ public class RegistrationPage {
     public String getBusinessNameValidationMessage() {
 
         return driver.findElement(ValidationMessageBusinessname).getText();
+    }
+
+    public String getRegistrationsuccestionMessage() {
+
+        return driver.findElement(RegistrationSuccessfullMessage).getText();
     }
 }
