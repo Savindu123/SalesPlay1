@@ -54,6 +54,7 @@ public class LoginTest {
         @Description("This test attempts to log into the website using a login and a password. Fails if any error happens.\n\nNote that this test does not test 2-Factor Authentication.")
         @Severity(CRITICAL)
         @Link(name = "Website", url = "https://webpos.salesplaypos.com/sign_in")
+
         public void testLogin(String email, String password, String expectedmessage) throws InterruptedException {
 
             loginPage.enterEmail(email);

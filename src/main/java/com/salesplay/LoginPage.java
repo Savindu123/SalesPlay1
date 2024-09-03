@@ -10,7 +10,7 @@ public class LoginPage {
     // Constructor
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        driver.get("https://webpos.salesplaypos.com/sign_in"); // Replace with your URL
+        driver.get("https://webpos.salesplaypos.com/sign_in"); // URL
     }
 
     // Locators
@@ -31,10 +31,12 @@ public class LoginPage {
     }
 
     public void clickLoginButton() {
+
         driver.findElement(loginButton).click();
     }
 
     public String getValidationMessage() {
+
         return driver.findElement(validationMessage).getText();
     }
 }

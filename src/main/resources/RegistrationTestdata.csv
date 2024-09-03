@@ -1,0 +1,13 @@
+email,password,businessname,expectedmessageemail,expectedmessagepassword,expectedmessagebusinessname
+,,,Email is required,Password is required,Bussiness Name is required
+,Asd12345,Burl Cafe,Email is required,,
+savindu@gmail.com,,Burl Cafe,,Password is required,
+savindu@gmail.com,Asd12345,,,,Bussiness Name is required
+              ,              ,                ,Email is required,Password is required,Bussiness Name is required
+                  ,Asd12345,Burl Cafe,Email is required,,
+savindu@gmail.com,              ,Burl Cafe,,Password is required,
+savindu@gmail.com,Asd12345,                 ,,,Bussiness Name is required
+test.@yopmail.com,Asd12345,Burl Cafe,Enter valid email,,
+savindugmail.com,Asd12346,Burl Cafe,Enter valid email,,
+savindu2@gmail.com,Asd123,Burl Cafe,,Password must be at least 8 characters,
+savindu3@gmail.com,Asd12345678,Burl Cafe,,,
