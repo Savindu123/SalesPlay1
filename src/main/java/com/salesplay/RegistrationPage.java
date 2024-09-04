@@ -25,6 +25,15 @@ public class RegistrationPage {
 
     private By RegistrationSuccessfullMessage = By.xpath("//*[ @class='text-msg']");
 
+    private By Emailconfirmationbuton = By.xpath("//button [@class ='btn btn-secondary full-width-btn']");
+
+    private By exeSkipButton = By.id("skipInstallModal");
+
+    private By exeDownloadButton = By.id("installApp");
+
+    private By createProductbutton = By.xpath("//button [@class ='btn btn-primary']");
+
+
     // Actions
     public static void enterEmail(String email) {
         driver.findElement(emailField).clear();
@@ -67,5 +76,21 @@ public class RegistrationPage {
     public String getRegistrationsuccestionMessage() {
 
         return driver.findElement(RegistrationSuccessfullMessage).getText();
+    }
+
+    public void clickOnEmailConfirmButton(){
+        driver.findElement(Emailconfirmationbuton).click();
+    }
+
+    public void clickOnexeSkipButton(){
+        driver.findElement(exeSkipButton).click();
+    }
+
+    public void clickOnexedownloadButton(){
+        driver.findElement(exeDownloadButton).click();
+    }
+
+    public void clickOnCreateProductbutton(){
+        driver.findElement(createProductbutton).click();
     }
 }

@@ -29,7 +29,7 @@ public class LoginTest {
 
     @BeforeClass
     public void beforeClass() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup();         
     }
 
     @BeforeMethod

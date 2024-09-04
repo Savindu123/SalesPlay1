@@ -7,16 +7,23 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Link;
 import io.qameta.allure.Severity;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.testng.Assert.assertEquals;
@@ -33,7 +40,15 @@ public class RegistrationTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+
+        Map<String, Object> prefs = new HashMap<>();
+
+        prefs.put("profile.default_content_setting_values.notifications", 1);
+
+        options.setExperimentalOption("prefs", prefs);
+
+        driver = new ChromeDriver(options);
         driver.get("https://webpos.salesplaypos.com/registration");
         registrationPage = new RegistrationPage(driver);
         driver.manage().window().maximize();
@@ -231,6 +246,7 @@ public class RegistrationTest {
     @Severity(CRITICAL)
     public void testRegistrationwithoutdata10 () throws InterruptedException {
 
+
         registrationPage.enterEmail("testyopmail.com");
         registrationPage.enterPassword("Asd12345");
         registrationPage.enterbussinessName("Burl Cafe");
@@ -269,7 +285,11 @@ public class RegistrationTest {
     @Severity(CRITICAL)
     public void testRegistrationwithoutdata12 () throws InterruptedException {
 
-        registrationPage.enterEmail("test5657@yopmail.com");
+        Random rand = new Random();
+
+        int rand_int1 = rand.nextInt(1000);
+
+        registrationPage.enterEmail("test"+rand_int1+"@yopmail.com");
         registrationPage.enterPassword("Asd12345");
         registrationPage.enterbussinessName("Burl Cafe");
 
@@ -277,14 +297,39 @@ public class RegistrationTest {
 
         Thread.sleep(10000);
 
-        String expectedRegistrationscuccessmessage = "The confirmation email has been sent to test5657@yopmail.com";
+        String expectedRegistrationscuccessmessage = "The confirmation email has been sent to test"+rand_int1+"@yopmail.com";
+
         String actualValidationMessagePassword = registrationPage.getRegistrationsuccestionMessage();
         assertEquals(actualValidationMessagePassword, expectedRegistrationscuccessmessage);
 
+        registrationPage.clickOnEmailConfirmButton();
+
+        Thread.sleep(2000);
+
+        registrationPage.clickOnexeSkipButton();
+
+
+
+//        Thread.sleep(2000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement button1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button [@class ='btn btn-primary']")));
+
+        registrationPage.clickOnCreateProductbutton();
+
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+
+        driver.switchTo().window(tabs.get(1));
+
+        String newTabURL = driver.getCurrentUrl();
+
+
+        // Define the expected URL
+        String expectedUrl = "https://cloud.salesplaypos.com/products";
+
+        assertEquals(newTabURL, expectedUrl);
+
     }
-
-
-
 
     @AfterMethod
     public void tearDown() {
