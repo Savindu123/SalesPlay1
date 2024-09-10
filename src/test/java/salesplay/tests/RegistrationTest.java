@@ -281,7 +281,7 @@ public class RegistrationTest {
     }
 
     @Test (priority = 12)
-    @Description("This test attempts to Register into the website with Valid Data .")
+    @Description("This test attempts to Register into the website with Valid Data and verify the Create Product button.")
     @Severity(CRITICAL)
     public void testRegistrationwithoutdata12 () throws InterruptedException {
 
@@ -308,9 +308,6 @@ public class RegistrationTest {
 
         registrationPage.clickOnexeSkipButton();
 
-
-
-//        Thread.sleep(2000);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         WebElement button1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button [@class ='btn btn-primary']")));
@@ -322,7 +319,6 @@ public class RegistrationTest {
         driver.switchTo().window(tabs.get(1));
 
         String newTabURL = driver.getCurrentUrl();
-
 
         // Define the expected URL
         String expectedUrl = "https://cloud.salesplaypos.com/products";
