@@ -14,9 +14,14 @@ public class ItemPage {
      //Constructor
     public ItemPage(WebDriver driver) {
         this.driver = driver;
-        driver.get("https://webpos.salesplaypos.com/registration"); // URL
     }
 
-    private static By itemList = By.xpath("//a[@class='intro-y block col-span-6 sm:col-span-4 2xl:col-span-3 productinfo ']");
+    private static By firstItem = By.xpath("//a[@class='intro-y block col-span-6 sm:col-span-4 2xl:col-span-3 productinfo ']");
+    private static By firstItem1 = By.linkText("Added To Price 1");
 
+    public void clickFirstItem(){
+
+        driver.findElement(firstItem1).click();
+
+    }
 }

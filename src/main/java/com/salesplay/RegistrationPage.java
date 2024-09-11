@@ -55,6 +55,7 @@ public class RegistrationPage {
     }
 
     public void clickSubmitButton() {
+
         driver.findElement(submitButton).click();
     }
 

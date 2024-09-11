@@ -1,5 +1,6 @@
 package salesplay.tests;
 
+import com.salesplay.ItemPage;
 import com.salesplay.LoginPage;
 import io.qameta.allure.*;
 import org.apache.commons.io.FileUtils;
@@ -7,6 +8,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -27,15 +30,17 @@ import static org.testng.Assert.assertEquals;
 
 public class ItemTest {
 
+    //private static final Logger log = LoggerFactory.getLogger(ItemTest.class);
     private WebDriver driver;
     private LoginPage loginPage;
+    private ItemPage itemPage;
 
     @BeforeClass
     public void beforeClass() {
         WebDriverManager.chromedriver().setup();
     }
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
 
@@ -45,7 +50,6 @@ public class ItemTest {
 
         options.setExperimentalOption("prefs", prefs);
         driver = new ChromeDriver(options);
-        //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get("https://webpos.salesplaypos.com/sign_in");
         loginPage = new LoginPage(driver);
         driver.manage().window().maximize();
@@ -68,25 +72,24 @@ public class ItemTest {
 
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='intro-y block col-span-6 sm:col-span-4 2xl:col-span-3 productinfo ']")));
 
-        //System.out.println("Debug"+element);
+        Thread.sleep(2000);
 
+        System.out.println("debug - "+ loginPage.getItemCount());
 
+        int actualcountOfItems = loginPage.getItemCount();
 
-        Thread.sleep(5000);
+        int expectedcountOfitems = 2;
 
-        //List<WebElement> links = driver.findElements(element);
-//
-//        // Get the count of elements//
-//        int countOfLinks = links.length;
-//
-//        // Print the count
-       // System.out.println(links);
+        assertEquals(actualcountOfItems, expectedcountOfitems);
+    }
 
-//        int expectedcountOfitems = 2;
-//
-//        assertEquals(actualcountOfItems, expectedcountOfitems);
-//
-//        System.out.println("Number of Items on the page: " + actualcountOfItems);
+    @Test
+    public void testItemAddToCart()throws InterruptedException {
+
+        itemPage.clickFirstItem();
+
+        Thread.sleep(3000);
+
     }
 
         @AfterMethod
@@ -95,8 +98,4 @@ public class ItemTest {
                 driver.quit();
             }
         }
-
-
-
-
     }
