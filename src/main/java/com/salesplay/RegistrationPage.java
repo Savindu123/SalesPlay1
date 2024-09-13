@@ -59,7 +59,7 @@ public class RegistrationPage {
         driver.findElement(submitButton).click();
     }
 
-    public String getEmailValidationMessage() {
+    public String  getEmailValidationMessage() {
 
         return driver.findElement(validationMessageEmail).getText();
     }

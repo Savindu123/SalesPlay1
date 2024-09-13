@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -36,12 +37,9 @@ public class ItemTest {
     private ItemPage itemPage;
 
     @BeforeClass
-    public void beforeClass() {
-        WebDriverManager.chromedriver().setup();
-    }
-
-    @BeforeClass
     public void setUp() {
+        WebDriverManager.chromedriver().setup();
+
         ChromeOptions options = new ChromeOptions();
 
         Map<String, Object> prefs = new HashMap<>();
@@ -55,7 +53,7 @@ public class ItemTest {
         driver.manage().window().maximize();
     }
 
-    @Test
+    @Test(priority = 1)
     public void testItemCount () throws InterruptedException {
 
         loginPage.enterEmail("Liveauto@testmail.com");
@@ -83,19 +81,57 @@ public class ItemTest {
         assertEquals(actualcountOfItems, expectedcountOfitems);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testItemAddToCart()throws InterruptedException {
 
-        itemPage.clickFirstItem();
+        loginPage.clickFirstItem();
+
+        Thread.sleep(1000);
+        WebElement cartElement = driver.findElement(By.id("items_1-1"));
+
+        // Check if the element is displayed
+        boolean isDisplayed = cartElement.isDisplayed();
+
+        // Print the result and add an assertion
+        //System.out.println("Is the element visible in the cart? " + isDisplayed);
+        Assert.assertTrue(isDisplayed, "The product is not visible in the cart.");
 
         Thread.sleep(3000);
+    }
+
+    @Test(priority = 3)
+    public void testGrandtotalWith1AddedTax() {
+
+        String itemAmount = loginPage.getItemAmount1st();
+
+        double ItemAmount = 0;
+        try {
+            ItemAmount = Double.parseDouble(itemAmount);
+            System.out.println("Item Amount: " + ItemAmount);
+        } catch (NumberFormatException e) {
+
+            System.out.println("Invalid number format: " + e.getMessage());
+        }
+        //the tax is 2.5%
+        double tax = 0.025;
+
+
+        double taxAmount = ItemAmount * tax;
+
+        double totalAmount = ItemAmount + taxAmount;
+
+        double expectedAmount = Double.parseDouble(loginPage.getGrandTotal());
+
+        Assert.assertEquals(totalAmount, expectedAmount, "Total amount is incorrect");
+
+        System.out.println("Total amount: " + totalAmount);
 
     }
 
-        @AfterMethod
-        public void tearDown() {
-            if (driver != null) {
-                driver.quit();
-            }
-        }
+//        @AfterClass
+//        public void tearDown() {
+//            if (driver != null) {
+//                driver.quit();
+//            }
+//        }
     }
