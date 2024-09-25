@@ -125,8 +125,35 @@ public class ItemTest {
         Assert.assertEquals(totalAmount, expectedAmount, "Total amount is incorrect");
 
         System.out.println("Total amount: " + totalAmount);
-
     }
+
+    @Test(priority = 4)
+    public void testSystemNavigatesToPaymentPage() {
+
+        loginPage.clickItemPageChargeButton();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lang_payment")));
+
+        String actualText = element.getText();
+
+        String expectedText = "Payment";
+
+        Assert.assertEquals(actualText, expectedText, "Payment page is not displayed");
+    }
+
+    @Test(priority = 5)
+    public void testPaymentPageChargeButton() throws InterruptedException {
+
+        loginPage.clickFinalChargeButton();
+
+        Thread.sleep(5000);
+    }
+
+
+
+
 
         @AfterClass
         public void tearDown() {

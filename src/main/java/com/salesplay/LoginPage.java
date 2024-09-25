@@ -28,7 +28,8 @@ public class LoginPage {
     private By cart1stItem = By.xpath("//a[@class='flex items-center p-3 cursor-pointer transition duration-300 ease-in-out bg-white dark:bg-darkmode-600 hover:bg-slate-100 dark:hover:bg-darkmode-400 rounded-md billing_items']");
     private By itemAmount1st = By.xpath("//div[@class='ml-auto font-medium line_price']");
     private By grandTotal = By.xpath("//span[@class='line_grantotal']");
-
+    private By itemPageChargeButton = By.xpath("//div[@id='load_charge']");
+    private By finalChargeButton = By.id("btn_charge");
 
     public void enterEmail(String email) {
         driver.findElement(emailField).clear();
@@ -82,5 +83,16 @@ public class LoginPage {
 
         return driver.findElement(grandTotal).getText();
     }
+
+    public void clickItemPageChargeButton(){
+
+        driver.findElement(itemPageChargeButton).click();
+    }
+
+    public void clickFinalChargeButton() {
+
+        driver.findElement(finalChargeButton).click();
+    }
+
 
 }
