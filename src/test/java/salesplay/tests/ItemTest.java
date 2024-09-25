@@ -128,7 +128,7 @@ public class ItemTest {
     }
 
     @Test(priority = 4)
-    public void testSystemNavigatesToPaymentPage() {
+    public void testSystemNavigatesToPaymentPage() throws InterruptedException {
 
         loginPage.clickItemPageChargeButton();
 
@@ -137,6 +137,8 @@ public class ItemTest {
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lang_payment")));
 
         String actualText = element.getText();
+
+        Thread.sleep(2000);
 
         String expectedText = "Payment";
 
