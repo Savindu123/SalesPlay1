@@ -144,7 +144,7 @@ public class ItemTest {
     public void runAllTestsMultipleTimes() throws InterruptedException {
 
         // Execute a suite of tests multiple times
-        for (int i = 0; i < 10; i++) {  // Repeat all tests 3 times
+        for (int i = 0; i < 3; i++) {  // Repeat all tests 3 times
             System.out.println("Test execution iteration: " + (i + 1));
 
             // Call all test methods within the loop
@@ -177,6 +177,7 @@ public class ItemTest {
     }
 
     @Test(priority = 4)
+
     public void testGrandtotalWith1AddedTax() {
 
 
@@ -212,6 +213,7 @@ public class ItemTest {
         // Log the total amount for debugging or verification purposes
         System.out.println("Total amount: " + totalAmount);
 
+
     }
 
     @Test(priority = 5)
@@ -229,6 +231,7 @@ public class ItemTest {
         // Brief pause (Note: Consider replacing with a more robust wait strategy)
         String actualText = element.getText();
 
+
         Thread.sleep(500);
 
         // Verify the Payment page is displayed correctly
@@ -244,6 +247,7 @@ public class ItemTest {
         Thread.sleep(1000);
 
         loginPage.clickNewSaleButton();
+
     }
 
 
