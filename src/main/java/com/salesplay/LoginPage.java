@@ -30,6 +30,18 @@ public class LoginPage {
     private By grandTotal = By.xpath("//span[@class='line_grantotal']");
     private By itemPageChargeButton = By.xpath("//div[@id='load_charge']");
     private By finalChargeButton = By.id("btn_charge");
+    private By settingsButton = By.id("softeware_div");
+    private By printerSetupButton = By.xpath("//div[@id='printer_txt']");
+    private By addPrinterButton = By.id("btn_printer_next");
+    private By addNewButton = By.xpath("//button[@class='btn btn-primary add_new_device']");
+    private By printerNameTextField = By.id("printername");
+    private By printReceiptsToggleButton = By.id("setting_printer_type_status");
+    private By connectionTypeDropdown = By.id("select_connection_mode");
+    private By wifiTextBox = By.id("wifi_ip");
+    private By saveButton = By.id("btn_printer_layout");
+    private By homeButton = By.id("lang_n_sale_tooltip");
+    private By newSaleButton = By.xpath("//button[@class='btn btn-primary mt-2 p-3 w-full start_new_sl']");
+
 
     public void enterEmail(String email) {
         driver.findElement(emailField).clear();
@@ -94,5 +106,60 @@ public class LoginPage {
         driver.findElement(finalChargeButton).click();
     }
 
+    public void clickNewSaleButton() {
 
+        driver.findElement(newSaleButton).click();
+    }
+
+
+
+    public void clickSettingButton() {
+
+        driver.findElement(settingsButton).click();
+    }
+
+    public void clickprinterSetupButton() {
+
+        driver.findElement(printerSetupButton).click();
+    }
+
+    public void clickaddPrinterButton() {
+
+        driver.findElement(addPrinterButton).click();
+    }
+
+    public void clickaddNewButton() {
+
+        driver.findElement(addNewButton).click();
+    }
+
+    public void enterPrinterName(String printerName) {
+        driver.findElement(printerNameTextField).clear();
+        driver.findElement(printerNameTextField).sendKeys(printerName);
+    }
+
+    public void clickprintReceiptsToggleButton() {
+
+        driver.findElement(printReceiptsToggleButton).click();
+    }
+
+    public void clickConnectionTypeDropdown() {
+
+        driver.findElement(connectionTypeDropdown).click();
+    }
+
+    public void enterPrinterWifi(String printerWifi) {
+        driver.findElement(wifiTextBox).clear();
+        driver.findElement(wifiTextBox).sendKeys(printerWifi);
+    }
+
+    public void clickSaveButton () {
+
+        driver.findElement(saveButton).click();
+    }
+
+    public void clickHomeButton () {
+
+        driver.findElement(homeButton).click();
+    }
 }
