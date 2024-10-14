@@ -2,13 +2,13 @@ package salesplay.tests;
 
 import com.salesplay.ItemPage;
 import com.salesplay.LoginPage;
-import io.qameta.allure.*;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Severity;
+import io.qameta.allure.Description;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -17,23 +17,20 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.time.Duration;
-import org.testng.annotations.*;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.Duration;
 import java.util.*;
 
 import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.testng.Assert.assertEquals;
 
-public class ItemTest {
+public class Added_Tax_Item_Test {
 
     //private static final Logger log = LoggerFactory.getLogger(ItemTest.class);
     private WebDriver driver;
     private LoginPage loginPage;
-    private ItemPage itemPage;
 
     @BeforeClass
     public void setUp() {
@@ -61,13 +58,16 @@ public class ItemTest {
 
         //Maximize the Browser
         driver.manage().window().maximize();
+
     }
 
     @Test(priority = 1)
+    @Description("Waiting for the Description")
+    @Severity(CRITICAL)
     public void testItemCount () throws InterruptedException {
 
         //calling methods from LoginPage.java
-        loginPage.enterEmail("Liveauto@testmail.com");
+         loginPage.enterEmail("Liveauto@testmail.com");
         loginPage.enterPassword("Asd12345");
         loginPage.clickLoginButton();
 
@@ -92,18 +92,39 @@ public class ItemTest {
         Thread.sleep(2000);
 
         //calling methods from LoginPage.java
-        System.out.println("debug - "+ loginPage.getItemCount());
+        System.out.println("Item Count  - "+ loginPage.getItemCount());
 
         //Assign to variable
         int actualcountOfItems = loginPage.getItemCount();
 
         //Expected count of items
-        int expectedcountOfitems = 2;
+        int expectedcountOfitems = 4;
 
         assertEquals(actualcountOfItems, expectedcountOfitems);
     }
 
     @Test(priority = 2)
+    @Description("Waiting for the Description")
+    @Severity(CRITICAL)
+    public void testCategoryCount () throws InterruptedException {
+
+        //calling methods from LoginPage.java
+        System.out.println("Item Count  - "+ loginPage.getCategoryCount());
+
+        //Assign to variable
+        int actualcountOfCategories = loginPage.getCategoryCount();
+
+        //Expected count of items
+        int expectedcountOfCategoriess = 2;
+
+        //Validate with actualcountOfCategories expectedcountOfCategoriess
+        assertEquals(actualcountOfCategories, expectedcountOfCategoriess);
+
+    }
+
+    @Test(priority = 3)
+    @Description("Waiting for the Description")
+    @Severity(CRITICAL)
     public void enablePrinterSetup() throws InterruptedException {
 
         //Calling methods from LoginPage.java
@@ -140,23 +161,28 @@ public class ItemTest {
 
     }
 
-    @Test(priority = 3)
-    public void runAllTestsMultipleTimes() throws InterruptedException {
+//    @Test(priority = 4)
+//    public void runAllTestsMultipleTimes() throws InterruptedException {
+//
+//        // Execute a suite of tests multiple times
+//        for (int i = 0; i < 2; i++) {  // Repeat all tests 3 times
+//            System.out.println("Test execution iteration: " + (i + 1));
+//
+//            // Call all test methods within the loop
+//            testItemAddToCart();
+//            testGrandtotalWith1AddedTax();
+//            testSystemNavigatesToPaymentPage();
+//            testPaymentPageChargeButton();
+//            testPastReceipt();
+//        }
+//    }
 
-        // Execute a suite of tests multiple times
-        for (int i = 0; i < 3; i++) {  // Repeat all tests 3 times
-            System.out.println("Test execution iteration: " + (i + 1));
-
-            // Call all test methods within the loop
-            testItemAddToCart();
-            testGrandtotalWith1AddedTax();
-            testSystemNavigatesToPaymentPage();
-            testPaymentPageChargeButton();
-        }
-    }
-
-    @Test(priority = 3)
+    @Test(priority = 4)
+    @Description("Waiting for the Description")
+    @Severity(CRITICAL)
     public void testItemAddToCart()throws InterruptedException {
+
+        Thread.sleep(200);
 
         //calling methods from LoginPage.java
         loginPage.clickFirstItem();
@@ -176,10 +202,10 @@ public class ItemTest {
         //Thread.sleep(1000);
     }
 
-    @Test(priority = 4)
-
+    @Test(priority = 5)
+    @Description("Waiting for the Description")
+    @Severity(CRITICAL)
     public void testGrandtotalWith1AddedTax() {
-
 
         String itemAmount = loginPage.getItemAmount1st();
 
@@ -216,7 +242,9 @@ public class ItemTest {
 
     }
 
-    @Test(priority = 5)
+    @Test(priority = 6)
+    @Description("Waiting for the Description")
+    @Severity(CRITICAL)
     public void testSystemNavigatesToPaymentPage() throws InterruptedException {
 
         // Verify navigation to the Payment page
@@ -231,7 +259,6 @@ public class ItemTest {
         // Brief pause (Note: Consider replacing with a more robust wait strategy)
         String actualText = element.getText();
 
-
         Thread.sleep(500);
 
         // Verify the Payment page is displayed correctly
@@ -239,17 +266,45 @@ public class ItemTest {
         Assert.assertEquals(actualText, expectedText, "Payment page is not displayed");
     }
 
-    @Test(priority = 6)
+    @Test(priority = 7)
+    @Description("Waiting for the Description")
+    @Severity(CRITICAL)
     public void testPaymentPageChargeButton() throws InterruptedException {
 
         loginPage.clickFinalChargeButton();
 
         Thread.sleep(1000);
 
-        loginPage.clickNewSaleButton();
-
+        //loginPage.clickNewSaleButton();
     }
 
+    @Test(priority = 8)
+    @Description("Waiting for the Description")
+    @Severity(CRITICAL)
+    public void testPastReceipt() throws InterruptedException {
+
+        Thread.sleep(2000);
+
+        loginPage.clickPastReceiptButton();
+
+        Thread.sleep(500);
+
+        //Get the value actualReceiptTotal from system
+        double actualReceiptTotal = Double.parseDouble( loginPage.getPastreceiptTotal());
+
+        System.out.println("Actual Receipt Total: "+actualReceiptTotal);
+
+        //need to get the value from system ****************************
+        double expectedReceiptTotal = 205.00;
+
+        System.out.println("Expected Receipt Total: "+ expectedReceiptTotal);
+
+        //Validate the actualReceiptTotal and expectedvalue
+        Assert.assertEquals(actualReceiptTotal, expectedReceiptTotal, "Total amount is incorrect");
+
+        //******************** should test Past receipt other elements *******************//
+
+    }
 
     @AfterClass
         public void tearDown() {
@@ -257,5 +312,23 @@ public class ItemTest {
                 driver.quit();
             }
         }
+
+    @AfterMethod (alwaysRun = true)
+    public void takeScreenshot(ITestResult result){
+        if(!result.isSuccess()){
+            //Take screenshot via webDriver
+            File screenShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+            //Save screenshot and convert to inputStream
+            try {
+                FileUtils.copyFile(screenShot, new File("build/screenshots/failedTestScreenshot.png"));
+                InputStream is = Files.newInputStream(Paths.get("build/screenshots/failedTestScreenshot.png"));
+                //Attach screenshot to allure reports
+                Allure.addAttachment("Last system snapshot",is);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
     }
